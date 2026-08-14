@@ -49,17 +49,14 @@ const showEmbed = ref(false); // 默认关闭嵌入模式
 const watermarkConfig = computed(() => {
   if (!watermarkEnabled.value) return undefined;
   return {
-    mode: 'text' as const,
-    layers: watermarkLayers.value.map((l) => ({
-      type: l.type,
-      ...(l.type === 'text' || l.type === 'both' ? { text: l.text } : {}),
-      ...(l.type === 'image' || l.type === 'both' ? { imageUrl: l.imageUrl } : {}),
-      ...(l.type === 'both' ? { layout: l.layout } : {}),
-      position: l.position,
-      rotation: l.rotation,
-      opacity: l.opacity,
-      ...(l.color ? { color: l.color } : {}), // 空字符串 = 主题自适应
-    })),
+    mode: watermark.value.type,
+    ...(watermark.value.type === 'text' || watermark.value.type === 'both' ? { text: watermark.value.text } : {}),
+    ...(watermark.value.type === 'image' || watermark.value.type === 'both' ? { imageUrl: watermark.value.imageUrl } : {}),
+    ...(watermark.value.type === 'both' ? { layout: watermark.value.layout } : {}),
+    position: watermark.value.position,
+    rotation: watermark.value.rotation,
+    opacity: watermark.value.opacity,
+    ...(watermark.value.color ? { color: watermark.value.color } : {}), // 空字符串 = 主题自适应
   };
 });
 
@@ -129,8 +126,8 @@ const theme = ref<Theme>('dark');
 const headless = ref(false);
 const locale = ref<Locale>('zh-CN');
 const showDownload = ref(true);
-// 水印配置（多层）
-interface WatermarkLayerDraft {
+// 水印配置（单层，与 WatermarkConfig 单层字段对应）
+interface WatermarkDraft {
   type: 'text' | 'image' | 'both';
   text: string;
   imageUrl: string;
@@ -142,18 +139,12 @@ interface WatermarkLayerDraft {
 }
 
 const watermarkEnabled = ref(false);
-const watermarkLayers = ref<WatermarkLayerDraft[]>([
-  { type: 'text', text: '机密文件', imageUrl: '', layout: 'horizontal', position: 'tile', rotation: -30, opacity: 0.35, color: '' },
-]);
+const watermark = ref<WatermarkDraft>({
+  type: 'text', text: '机密文件', imageUrl: '', layout: 'horizontal', position: 'tile', rotation: -30, opacity: 0.35, color: '',
+});
 
-const updateWatermarkLayer = (index: number, patch: Partial<WatermarkLayerDraft>) => {
-  watermarkLayers.value = watermarkLayers.value.map((l, i) => (i === index ? { ...l, ...patch } : l));
-};
-const addWatermarkLayer = () => {
-  watermarkLayers.value = [...watermarkLayers.value, { type: 'text', text: '', imageUrl: '', layout: 'horizontal', position: 'tile', rotation: -30, opacity: 0.35, color: '' }];
-};
-const removeWatermarkLayer = (index: number) => {
-  watermarkLayers.value = watermarkLayers.value.filter((_, i) => i !== index);
+const updateWatermark = (patch: Partial<WatermarkDraft>) => {
+  watermark.value = { ...watermark.value, ...patch };
 };
 // 密码配置
 const passwordInput = ref('');
@@ -773,107 +764,89 @@ onUnmounted(() => {
             </button>
             <span class="text-gray-500 text-xs">{{ watermarkEnabled ? '开启' : '关闭' }}</span>
           </div>
-          <div v-if="watermarkEnabled" class="space-y-2">
-            <div v-for="(layer, i) in watermarkLayers" :key="i" class="ml-13 space-y-2 border border-white/10 rounded p-2">
-              <div class="flex items-center justify-between">
-                <span class="text-gray-500 text-[10px]">层 {{ i + 1 }}</span>
-                <div class="flex items-center gap-1">
-                  <button
-                    v-for="[t, label] in ([['text', '文字'], ['image', '图片'], ['both', '图片+文字']] as const)"
-                    :key="t"
-                    :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', layer.type === t ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
-                    @click="updateWatermarkLayer(i, { type: t })"
-                  >
-                    {{ label }}
-                  </button>
-                  <button
-                    class="px-1.5 py-0.5 rounded text-[10px] bg-white/5 text-red-400 hover:text-red-300"
-                    title="删除该层"
-                    @click="removeWatermarkLayer(i)"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-              <input
-                v-if="layer.type === 'text' || layer.type === 'both'"
-                v-model="layer.text"
-                class="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500"
-                placeholder="水印文字"
-              />
-              <input
-                v-if="layer.type === 'image' || layer.type === 'both'"
-                v-model="layer.imageUrl"
-                class="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500"
-                placeholder="图片 URL"
-              />
-              <div v-if="layer.type === 'both'" class="flex items-center gap-2">
-                <span class="text-gray-500 text-[10px] w-10">布局</span>
-                <button
-                  v-for="[layout, label] in ([['horizontal', '图左文右'], ['vertical', '图上文下']] as const)"
-                  :key="layout"
-                  :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', layer.layout === layout ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
-                  @click="updateWatermarkLayer(i, { layout })"
-                >
-                  {{ label }}
-                </button>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-gray-500 text-[10px] w-10">颜色</span>
-                <input
-                  type="color"
-                  :value="layer.color || '#ffffff'"
-                  @input="updateWatermarkLayer(i, { color: ($event.target as HTMLInputElement).value })"
-                  class="w-8 h-6 rounded cursor-pointer bg-transparent border border-white/20"
-                  title="水印颜色"
-                />
-                <button
-                  :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', !layer.color ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
-                  @click="updateWatermarkLayer(i, { color: '' })"
-                >
-                  自适应
-                </button>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-gray-500 text-[10px] w-10">角度</span>
-                <input
-                  type="range"
-                  min="-90"
-                  max="90"
-                  v-model.number="layer.rotation"
-                  class="flex-1 h-1 accent-emerald-500"
-                />
-                <span class="text-gray-500 text-[10px] w-8 text-right">{{ layer.rotation }}°</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-gray-500 text-[10px] w-10">透明度</span>
-                <input
-                  type="range"
-                  min="0.05"
-                  max="0.6"
-                  step="0.05"
-                  v-model.number="layer.opacity"
-                  class="flex-1 h-1 accent-emerald-500"
-                />
-                <span class="text-gray-500 text-[10px] w-8 text-right">{{ Math.round(layer.opacity * 100) }}%</span>
-              </div>
-              <div class="flex items-center gap-1">
-                <button
-                  v-for="pos in (['tile', 'center', 'diagonal'] as const)"
-                  :key="pos"
-                  :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', layer.position === pos ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
-                  @click="updateWatermarkLayer(i, { position: pos })"
-                >
-                  {{ pos }}
-                </button>
-              </div>
+          <div v-if="watermarkEnabled" class="ml-13 space-y-2 border border-white/10 rounded p-2">
+            <div class="flex items-center gap-1">
+              <button
+                v-for="[t, label] in ([['text', '文字'], ['image', '图片'], ['both', '图片+文字']] as const)"
+                :key="t"
+                :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', watermark.type === t ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
+                @click="updateWatermark({ type: t })"
+              >
+                {{ label }}
+              </button>
             </div>
-            <button
-              class="ml-13 w-full px-2 py-1 rounded text-[10px] font-medium bg-white/5 text-gray-300 hover:text-white border border-dashed border-white/20"
-              @click="addWatermarkLayer"
-            >
-              + 添加水印层
-            </button>
+            <input
+              v-if="watermark.type === 'text' || watermark.type === 'both'"
+              v-model="watermark.text"
+              class="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500"
+              placeholder="水印文字"
+            />
+            <input
+              v-if="watermark.type === 'image' || watermark.type === 'both'"
+              v-model="watermark.imageUrl"
+              class="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500"
+              placeholder="图片 URL"
+            />
+            <div v-if="watermark.type === 'both'" class="flex items-center gap-2">
+              <span class="text-gray-500 text-[10px] w-10">布局</span>
+              <button
+                v-for="[layout, label] in ([['horizontal', '图左文右'], ['vertical', '图上文下']] as const)"
+                :key="layout"
+                :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', watermark.layout === layout ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
+                @click="updateWatermark({ layout })"
+              >
+                {{ label }}
+              </button>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-gray-500 text-[10px] w-10">颜色</span>
+              <input
+                type="color"
+                :value="watermark.color || '#ffffff'"
+                @input="updateWatermark({ color: ($event.target as HTMLInputElement).value })"
+                class="w-8 h-6 rounded cursor-pointer bg-transparent border border-white/20"
+                title="水印颜色"
+              />
+              <button
+                :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', !watermark.color ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
+                @click="updateWatermark({ color: '' })"
+              >
+                自适应
+              </button>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-gray-500 text-[10px] w-10">角度</span>
+              <input
+                type="range"
+                min="-90"
+                max="90"
+                v-model.number="watermark.rotation"
+                class="flex-1 h-1 accent-emerald-500"
+              />
+              <span class="text-gray-500 text-[10px] w-8 text-right">{{ watermark.rotation }}°</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-gray-500 text-[10px] w-10">透明度</span>
+              <input
+                type="range"
+                min="0.05"
+                max="0.6"
+                step="0.05"
+                v-model.number="watermark.opacity"
+                class="flex-1 h-1 accent-emerald-500"
+              />
+              <span class="text-gray-500 text-[10px] w-8 text-right">{{ Math.round(watermark.opacity * 100) }}%</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <button
+                v-for="pos in (['tile', 'center', 'diagonal'] as const)"
+                :key="pos"
+                :class="['px-2 py-0.5 rounded text-[10px] font-medium transition-all', watermark.position === pos ? 'bg-emerald-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white']"
+                @click="updateWatermark({ position: pos })"
+              >
+                {{ pos }}
+              </button>
+            </div>
           </div>
         </div>
 

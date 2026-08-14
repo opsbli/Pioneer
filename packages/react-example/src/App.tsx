@@ -6,8 +6,8 @@ import '@pioneer/react/style.css';
 import { FileText, Image, FileSpreadsheet, Video, Music, Upload, X, Package, BookOpen, Code, Settings, Sparkles, Link as LinkIcon } from 'lucide-react';
 import iconSvg from './assets/icon.svg';
 
-// 示例面板中的水印层草稿（与 WatermarkConfig.layers 对应）
-interface WatermarkLayerDraft {
+// 示例面板中的水印草稿（与 WatermarkConfig 单层字段对应）
+interface WatermarkDraft {
   type: 'text' | 'image' | 'both';
   text: string;
   imageUrl: string;
@@ -85,10 +85,10 @@ function App() {
   const [locale, setLocale] = useState<Locale>('zh-CN');
   const [showDownload, setShowDownload] = useState(true);
   const [watermarkEnabled, setWatermarkEnabled] = useState(false);
-  // 水印多层配置（layers）：每层可独立选择文字/图片类型
-  const [watermarkLayers, setWatermarkLayers] = useState<WatermarkLayerDraft[]>([
-    { type: 'text', text: '机密文件', imageUrl: '', layout: 'horizontal', position: 'tile', rotation: -30, opacity: 0.35, color: '' },
-  ]);
+  // 水印单层配置
+  const [watermark, setWatermark] = useState<WatermarkDraft>({
+    type: 'text', text: '机密文件', imageUrl: '', layout: 'horizontal', position: 'tile', rotation: -30, opacity: 0.35, color: '',
+  });
   const [passwordInput, setPasswordInput] = useState('');
   const [panelOpen, setPanelOpen] = useState(false);
   const [ballPos, setBallPos] = useState({ x: 20, y: 200 });
@@ -247,28 +247,19 @@ function App() {
   // 水印配置：未启用时返回 undefined
   const watermarkConfig = watermarkEnabled
     ? ({
-        mode: 'text',
-        layers: watermarkLayers.map((l) => ({
-          type: l.type,
-          ...(l.type === 'text' || l.type === 'both' ? { text: l.text } : {}),
-          ...(l.type === 'image' || l.type === 'both' ? { imageUrl: l.imageUrl } : {}),
-          ...(l.type === 'both' ? { layout: l.layout } : {}),
-          position: l.position,
-          rotation: l.rotation,
-          opacity: l.opacity,
-          ...(l.color ? { color: l.color } : {}), // 空字符串 = 主题自适应
-        })),
+        mode: watermark.type,
+        ...(watermark.type === 'text' || watermark.type === 'both' ? { text: watermark.text } : {}),
+        ...(watermark.type === 'image' || watermark.type === 'both' ? { imageUrl: watermark.imageUrl } : {}),
+        ...(watermark.type === 'both' ? { layout: watermark.layout } : {}),
+        position: watermark.position,
+        rotation: watermark.rotation,
+        opacity: watermark.opacity,
+        ...(watermark.color ? { color: watermark.color } : {}), // 空字符串 = 主题自适应
       } satisfies WatermarkConfig)
     : undefined;
 
-  const updateWatermarkLayer = (index: number, patch: Partial<WatermarkLayerDraft>) => {
-    setWatermarkLayers((prev) => prev.map((l, i) => (i === index ? { ...l, ...patch } : l)));
-  };
-  const addWatermarkLayer = () => {
-    setWatermarkLayers((prev) => [...prev, { type: 'text', text: '', imageUrl: '', layout: 'horizontal', position: 'tile', rotation: -30, opacity: 0.35, color: '' }]);
-  };
-  const removeWatermarkLayer = (index: number) => {
-    setWatermarkLayers((prev) => prev.filter((_, i) => i !== index));
+  const updateWatermark = (patch: Partial<WatermarkDraft>) => {
+    setWatermark((prev) => ({ ...prev, ...patch }));
   };
 
   // 密码配置：空字符串时返回 undefined
@@ -749,155 +740,136 @@ function App() {
               </button>
               <span className="text-gray-500 text-xs">{showDownload ? '显示' : '隐藏'}</span>
             </div>
+            <div className="border-t border-white/10 my-2" />
+
+            {/* 水印配置 */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400 text-xs w-10 flex-shrink-0">水印</span>
+                <button
+                  onClick={() => setWatermarkEnabled(!watermarkEnabled)}
+                  className={`relative w-10 h-5 rounded-full transition-colors ${watermarkEnabled ? 'bg-blue-500' : 'bg-white/20'}`}
+                >
+                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${watermarkEnabled ? 'translate-x-5' : ''}`} />
+                </button>
+                <span className="text-gray-500 text-xs">{watermarkEnabled ? '开启' : '关闭'}</span>
+              </div>
+              {watermarkEnabled && (
+                <div className="ml-13 space-y-2 border border-white/10 rounded p-2">
+                  <div className="flex items-center gap-1">
+                    {([['text', '文字'], ['image', '图片'], ['both', '图片+文字']] as const).map(([t, label]) => (
+                      <button
+                        key={t}
+                        onClick={() => updateWatermark({ type: t })}
+                        className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${watermark.type === t ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                  {(watermark.type === 'text' || watermark.type === 'both') && (
+                    <input
+                      value={watermark.text}
+                      onChange={(e) => updateWatermark({ text: e.target.value })}
+                      className="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                      placeholder="水印文字"
+                    />
+                  )}
+                  {(watermark.type === 'image' || watermark.type === 'both') && (
+                    <input
+                      value={watermark.imageUrl}
+                      onChange={(e) => updateWatermark({ imageUrl: e.target.value })}
+                      className="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                      placeholder="图片 URL"
+                    />
+                  )}
+                  {watermark.type === 'both' && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-500 text-[10px] w-10">布局</span>
+                      {([['horizontal', '图左文右'], ['vertical', '图上文下']] as const).map(([layout, label]) => (
+                        <button
+                          key={layout}
+                          onClick={() => updateWatermark({ layout })}
+                          className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${watermark.layout === layout ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500 text-[10px] w-10">颜色</span>
+                    <input
+                      type="color"
+                      value={watermark.color || '#ffffff'}
+                      onChange={(e) => updateWatermark({ color: e.target.value })}
+                      className="w-8 h-6 rounded cursor-pointer bg-transparent border border-white/20"
+                      title="水印颜色"
+                    />
+                    <button
+                      onClick={() => updateWatermark({ color: '' })}
+                      className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${!watermark.color ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
+                    >
+                      自适应
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500 text-[10px] w-10">角度</span>
+                    <input
+                      type="range"
+                      min="-90"
+                      max="90"
+                      value={watermark.rotation}
+                      onChange={(e) => updateWatermark({ rotation: Number(e.target.value) })}
+                      className="flex-1 h-1 accent-blue-500"
+                    />
+                    <span className="text-gray-500 text-[10px] w-8 text-right">{watermark.rotation}°</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500 text-[10px] w-10">透明度</span>
+                    <input
+                      type="range"
+                      min="0.05"
+                      max="0.6"
+                      step="0.05"
+                      value={watermark.opacity}
+                      onChange={(e) => updateWatermark({ opacity: Number(e.target.value) })}
+                      className="flex-1 h-1 accent-blue-500"
+                    />
+                    <span className="text-gray-500 text-[10px] w-8 text-right">{Math.round(watermark.opacity * 100)}%</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {(['tile', 'center', 'diagonal'] as const).map((pos) => (
+                      <button
+                        key={pos}
+                        onClick={() => updateWatermark({ position: pos })}
+                        className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${watermark.position === pos ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
+                      >
+                        {pos}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="border-t border-white/10 my-2" />
+
+            {/* 密码输入 */}
+            <div className="space-y-1">
+              <span className="text-gray-400 text-xs">密码</span>
+              <input
+                type="password"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                className="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                placeholder="加密文件密码（可选）"
+              />
+              <span className="text-gray-600 text-[9px]">留空则使用弹窗输入</span>
+            </div>
             {allFiles.length > 0 && (
               <>
                 <div className="border-t border-white/10 my-2" />
-
-                {/* 水印配置 */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-gray-400 text-xs w-10 flex-shrink-0">水印</span>
-                    <button
-                      onClick={() => setWatermarkEnabled(!watermarkEnabled)}
-                      className={`relative w-10 h-5 rounded-full transition-colors ${watermarkEnabled ? 'bg-blue-500' : 'bg-white/20'}`}
-                    >
-                      <span className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${watermarkEnabled ? 'translate-x-5' : ''}`} />
-                    </button>
-                    <span className="text-gray-500 text-xs">{watermarkEnabled ? '开启' : '关闭'}</span>
-                  </div>
-                  {watermarkEnabled && (
-                    <div className="space-y-2">
-                      {watermarkLayers.map((layer, i) => (
-                        <div key={i} className="ml-13 space-y-2 border border-white/10 rounded p-2">
-                          <div className="flex items-center justify-between">
-                            <span className="text-gray-500 text-[10px]">层 {i + 1}</span>
-                            <div className="flex items-center gap-1">
-                              {([['text', '文字'], ['image', '图片'], ['both', '图片+文字']] as const).map(([t, label]) => (
-                                <button
-                                  key={t}
-                                  onClick={() => updateWatermarkLayer(i, { type: t })}
-                                  className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${layer.type === t ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
-                                >
-                                  {label}
-                                </button>
-                              ))}
-                              <button
-                                onClick={() => removeWatermarkLayer(i)}
-                                className="px-1.5 py-0.5 rounded text-[10px] bg-white/5 text-red-400 hover:text-red-300"
-                                title="删除该层"
-                              >
-                                ✕
-                              </button>
-                            </div>
-                          </div>
-                          {(layer.type === 'text' || layer.type === 'both') && (
-                            <input
-                              value={layer.text}
-                              onChange={(e) => updateWatermarkLayer(i, { text: e.target.value })}
-                              className="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                              placeholder="水印文字"
-                            />
-                          )}
-                          {(layer.type === 'image' || layer.type === 'both') && (
-                            <input
-                              value={layer.imageUrl}
-                              onChange={(e) => updateWatermarkLayer(i, { imageUrl: e.target.value })}
-                              className="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                              placeholder="图片 URL"
-                            />
-                          )}
-                          {layer.type === 'both' && (
-                            <div className="flex items-center gap-2">
-                              <span className="text-gray-500 text-[10px] w-10">布局</span>
-                              {([['horizontal', '图左文右'], ['vertical', '图上文下']] as const).map(([layout, label]) => (
-                                <button
-                                  key={layout}
-                                  onClick={() => updateWatermarkLayer(i, { layout })}
-                                  className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${layer.layout === layout ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
-                                >
-                                  {label}
-                                </button>
-                              ))}
-                            </div>
-                          )}
-                          <div className="flex items-center gap-2">
-                            <span className="text-gray-500 text-[10px] w-10">颜色</span>
-                            <input
-                              type="color"
-                              value={layer.color || '#ffffff'}
-                              onChange={(e) => updateWatermarkLayer(i, { color: e.target.value })}
-                              className="w-8 h-6 rounded cursor-pointer bg-transparent border border-white/20"
-                              title="水印颜色"
-                            />
-                            <button
-                              onClick={() => updateWatermarkLayer(i, { color: '' })}
-                              className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${!layer.color ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
-                            >
-                              自适应
-                            </button>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-gray-500 text-[10px] w-10">角度</span>
-                            <input
-                              type="range"
-                              min="-90"
-                              max="90"
-                              value={layer.rotation}
-                              onChange={(e) => updateWatermarkLayer(i, { rotation: Number(e.target.value) })}
-                              className="flex-1 h-1 accent-blue-500"
-                            />
-                            <span className="text-gray-500 text-[10px] w-8 text-right">{layer.rotation}°</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-gray-500 text-[10px] w-10">透明度</span>
-                            <input
-                              type="range"
-                              min="0.05"
-                              max="0.6"
-                              step="0.05"
-                              value={layer.opacity}
-                              onChange={(e) => updateWatermarkLayer(i, { opacity: Number(e.target.value) })}
-                              className="flex-1 h-1 accent-blue-500"
-                            />
-                            <span className="text-gray-500 text-[10px] w-8 text-right">{Math.round(layer.opacity * 100)}%</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            {(['tile', 'center', 'diagonal'] as const).map((pos) => (
-                              <button
-                                key={pos}
-                                onClick={() => updateWatermarkLayer(i, { position: pos })}
-                                className={`px-2 py-0.5 rounded text-[10px] font-medium transition-all ${layer.position === pos ? 'bg-blue-500 text-white' : 'bg-white/5 text-gray-400 hover:text-white'}`}
-                              >
-                                {pos}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                      <button
-                        onClick={addWatermarkLayer}
-                        className="ml-13 w-full px-2 py-1 rounded text-[10px] font-medium bg-white/5 text-gray-300 hover:text-white border border-dashed border-white/20"
-                      >
-                        + 添加水印层
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                <div className="border-t border-white/10 my-2" />
-
-                {/* 密码输入 */}
-                <div className="space-y-1">
-                  <span className="text-gray-400 text-xs">密码</span>
-                  <input
-                    type="password"
-                    value={passwordInput}
-                    onChange={(e) => setPasswordInput(e.target.value)}
-                    className="w-full px-2 py-1 text-xs bg-white/5 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                    placeholder="加密文件密码（可选）"
-                  />
-                  <span className="text-gray-600 text-[9px]">留空则使用弹窗输入</span>
-                </div>
                 <div className="flex items-center gap-3">
                   <span className="text-gray-400 text-xs w-10 flex-shrink-0">嵌入</span>
                   <button
