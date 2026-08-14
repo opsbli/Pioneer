@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/opsbli/Pioneer/discussions
+    about: 提问、讨论想法或分享使用经验 / Ask questions, discuss ideas or share experiences
+  - name: 📖 在线文档 / Documentation
+    url: https://opsbli.github.io/Pioneer
+    about: 查看完整的使用文档 / View full documentation
+  - name: 📦 React 包
+    url: https://www.npmjs.com/package/@pioneer/react
+    about: React 版本的 npm 包页面 / React package on npm
+  - name: 📦 Vue 包
+    url: https://www.npmjs.com/package/@pioneer/vue
+    about: Vue 版本的 npm 包页面 / Vue package on npm

@@ -1,0 +1,81 @@
+{
+  "name": "@pioneer/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A modern, feature-rich file preview component library for React and Vue - Monorepo",
+  "type": "module",
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "dev": "pnpm dev:prep:react && pnpm --parallel --filter @pioneer/react --filter @pioneer/react-example dev",
+    "dev:vue": "pnpm dev:prep:vue && pnpm --parallel --filter @pioneer/vue --filter @pioneer/vue-example dev",
+    "dev:docs": "pnpm --filter @pioneer/docs dev",
+    "kill:dev": "for port in 4800 4801 4802; do lsof -ti :$port | xargs -r kill 2>/dev/null && echo \"已终止端口 $port\" || true; done",
+    "dev:prep:react": "pnpm --filter @pioneer/core build && pnpm --filter @pioneer/react build:esm",
+    "dev:prep:vue": "pnpm --filter @pioneer/core build && pnpm --filter @pioneer/vue build:esm",
+    "build": "pnpm build:lib && pnpm --filter @pioneer/react-example build && pnpm --filter @pioneer/vue-example build && pnpm --filter @pioneer/docs build",
+    "build:lib": "pnpm --filter @pioneer/core build && pnpm --filter @pioneer/react build && pnpm --filter @pioneer/vue build",
+    "build:lib:react": "pnpm --filter @pioneer/core build && pnpm --filter @pioneer/react build",
+    "build:lib:vue": "pnpm --filter @pioneer/core build && pnpm --filter @pioneer/vue build",
+    "build:example": "pnpm build:lib:react && pnpm --filter @pioneer/react-example build",
+    "build:example:vue": "pnpm build:lib:vue && pnpm --filter @pioneer/vue-example build",
+    "build:docs": "pnpm --filter @pioneer/docs build",
+    "preview:example": "pnpm --filter @pioneer/react-example preview",
+    "preview:example:vue": "pnpm --filter @pioneer/vue-example preview",
+    "preview:docs": "pnpm --filter @pioneer/docs preview",
+    "clean": "find packages -type d \\( -name dist -o -name lib -o -name .vitepress/dist \\) -prune -exec rm -rf {} + && find packages -type d -name node_modules -prune -exec rm -rf {} + && rm -rf node_modules dist-deploy",
+    "lint": "eslint packages --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "pnpm --filter @pioneer/core build && node --test tests/*.test.mjs",
+    "gh": "bash scripts/deploy.sh",
+    "version:patch:react": "pnpm --filter @pioneer/react version:patch",
+    "version:minor:react": "pnpm --filter @pioneer/react version:minor",
+    "version:major:react": "pnpm --filter @pioneer/react version:major",
+    "pub:react": "pnpm --filter @pioneer/react pub",
+    "pub:patch:react": "pnpm version:patch:react && pnpm pub:react",
+    "pub:minor:react": "pnpm version:minor:react && pnpm pub:react",
+    "pub:major:react": "pnpm version:major:react && pnpm pub:react",
+    "version:patch:vue": "pnpm --filter @pioneer/vue version:patch",
+    "version:minor:vue": "pnpm --filter @pioneer/vue version:minor",
+    "version:major:vue": "pnpm --filter @pioneer/vue version:major",
+    "pub:vue": "pnpm --filter @pioneer/vue pub",
+    "pub:patch:vue": "pnpm version:patch:vue && pnpm pub:vue",
+    "pub:minor:vue": "pnpm version:minor:vue && pnpm pub:vue",
+    "pub:major:vue": "pnpm version:major:vue && pnpm pub:vue",
+    "size": "size-limit",
+    "size:why": "size-limit --why",
+    "measure": "node scripts/measure-bundle.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opsbli/Pioneer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opsbli/Pioneer/issues"
+  },
+  "homepage": "https://opsbli.github.io/Pioneer",
+  "license": "MIT",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "core-js",
+      "esbuild",
+      "x-data-spreadsheet"
+    ]
+  },
+  "author": {
+    "name": "opsbli",
+    "email": "hao131462@qq.com",
+    "url": "https://github.com/opsbli/Pioneer"
+  },
+  "devDependencies": {
+    "@size-limit/file": "^11.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "baseline-browser-mapping": "^2.10.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "less": "^4.5.1",
+    "playwright": "^1.62.1",
+    "size-limit": "^11.1.6",
+    "typescript": "^5.6.3"
+  }
+}
