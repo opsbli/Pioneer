@@ -1,0 +1,1 @@
+import{_ as i,o as a,c as n,ag as l}from"./chunks/framework.BXUCUU0b.js";const o=JSON.parse('{"title":"工具函数","description":"","frontmatter":{},"headers":[],"relativePath":"api/utils.md","filePath":"api/utils.md"}'),e={name:"api/utils.md"};function h(t,s,p,k,d,r){return a(),n("div",null,[...s[0]||(s[0]=[l("",83)])])}const E=i(e,[["render",h]]);export{o as __pageData,E as default};
