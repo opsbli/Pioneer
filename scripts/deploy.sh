@@ -16,19 +16,19 @@ pnpm --filter @pioneer/core build
 
 # 构建 React 核心库
 echo "构建 react..."
-pnpm --filter @pioneer/react build
+pnpm --filter @opsbli/react build
 
 # 构建 Vue 核心库
 echo "构建 vue..."
-pnpm --filter @pioneer/vue build
+pnpm --filter @opsbli/vue build
 
 # 构建 React 示例项目
 echo "构建 React 示例项目..."
-pnpm --filter @pioneer/react-example build
+pnpm --filter @opsbli/react-example build
 
 # 构建 Vue 示例项目
 echo "构建 Vue 示例项目..."
-pnpm --filter @pioneer/vue-example build
+pnpm --filter @opsbli/vue-example build
 
 # 复制 React 示例项目到部署目录根路径
 echo "复制 React 示例项目..."

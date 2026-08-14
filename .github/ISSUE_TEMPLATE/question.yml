@@ -15,8 +15,8 @@ body:
     attributes:
       label: 相关包
       options:
-        - "@pioneer/react"
-        - "@pioneer/vue"
+        - "@opsbli/react"
+        - "@opsbli/vue"
         - "@pioneer/core"
         - 不确定 / 其他
     validations:

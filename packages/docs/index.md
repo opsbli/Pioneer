@@ -68,19 +68,19 @@ features:
 ::: code-group
 
 ```bash [React · pnpm]
-pnpm add @pioneer/react
+pnpm add @opsbli/react
 ```
 
 ```bash [Vue 3 · pnpm]
-pnpm add @pioneer/vue
+pnpm add @opsbli/vue
 ```
 
 ```bash [React · npm]
-npm install @pioneer/react
+npm install @opsbli/react
 ```
 
 ```bash [Vue 3 · npm]
-npm install @pioneer/vue
+npm install @opsbli/vue
 ```
 
 :::
@@ -93,8 +93,8 @@ npm install @pioneer/vue
 
 ```tsx [React]
 import { useState } from 'react'
-import { PioneerModal } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerModal } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -119,8 +119,8 @@ function App() {
 ```vue [Vue 3]
 <script setup>
 import { ref } from 'vue'
-import { PioneerModal } from '@pioneer/vue'
-import '@pioneer/vue/style.css'
+import { PioneerModal } from '@opsbli/vue'
+import '@opsbli/vue/style.css'
 
 const isOpen = ref(false)
 const files = [
@@ -146,8 +146,8 @@ const files = [
 ::: code-group
 
 ```tsx [React]
-import { PioneerEmbed } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerEmbed } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function Detail() {
   const files = [
@@ -164,8 +164,8 @@ function Detail() {
 
 ```vue [Vue 3]
 <script setup>
-import { PioneerEmbed } from '@pioneer/vue'
-import '@pioneer/vue/style.css'
+import { PioneerEmbed } from '@opsbli/vue'
+import '@opsbli/vue/style.css'
 
 const files = [
   { url: 'https://example.com/document.pdf', name: 'document.pdf' }
@@ -200,8 +200,8 @@ const files = [
 ```
 @pioneer/core    # 框架无关的核心工具（types/工具函数/PDF 配置）
        │
-       ├── @pioneer/react   # React 18+ 版本
-       └── @pioneer/vue     # Vue 3 版本
+       ├── @opsbli/react   # React 18+ 版本
+       └── @opsbli/vue     # Vue 3 版本
 ```
 
 两个 UI 包共享同一份纯 TS 工具与类型定义，并按各自框架惯例提供等价能力。

@@ -29,8 +29,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@pioneer/vue/style.css': resolve(__dirname, '../vue/lib/index.css'),
-      '@pioneer/vue': resolve(__dirname, '../vue/lib/index.mjs'),
+      '@opsbli/vue/style.css': resolve(__dirname, '../vue/lib/index.css'),
+      '@opsbli/vue': resolve(__dirname, '../vue/lib/index.mjs'),
     },
   },
   optimizeDeps: {

@@ -1,9 +1,9 @@
 # Pioneer
 
-[![npm version](https://img.shields.io/npm/v/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react)
-[![license](https://img.shields.io/npm/l/@pioneer/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)
-[![react downloads](https://img.shields.io/npm/dm/@pioneer/react.svg?label=@pioneer/react)](https://www.npmjs.com/package/@pioneer/react)
-[![vue downloads](https://img.shields.io/npm/dm/@pioneer/vue.svg?label=@pioneer/vue)](https://www.npmjs.com/package/@pioneer/vue)
+[![npm version](https://img.shields.io/npm/v/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react)
+[![license](https://img.shields.io/npm/l/@opsbli/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)
+[![react downloads](https://img.shields.io/npm/dm/@opsbli/react.svg?label=@opsbli/react)](https://www.npmjs.com/package/@opsbli/react)
+[![vue downloads](https://img.shields.io/npm/dm/@opsbli/vue.svg?label=@opsbli/vue)](https://www.npmjs.com/package/@opsbli/vue)
 
 [English](./README.md) | 简体中文
 
@@ -36,8 +36,8 @@
     • <a href="https://opsbli.github.io/Pioneer/vue/">Vue 在线演示</a>
   </td>
   <td>
-    • <a href="https://www.npmjs.com/package/@pioneer/react">React 包</a><br>
-    • <a href="https://www.npmjs.com/package/@pioneer/vue">Vue 包</a><br>
+    • <a href="https://www.npmjs.com/package/@opsbli/react">React 包</a><br>
+    • <a href="https://www.npmjs.com/package/@opsbli/vue">Vue 包</a><br>
     • <a href="https://github.com/opsbli/Pioneer/issues">问题反馈</a>
   </td>
   <td>
@@ -55,12 +55,12 @@
 ### React
 
 ```bash
-npm install @pioneer/react
+npm install @opsbli/react
 ```
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerModal } from '@opsbli/react';
+import '@opsbli/react/style.css';
 
 <PioneerModal
   files={[file]}
@@ -75,13 +75,13 @@ import '@pioneer/react/style.css';
 ### Vue
 
 ```bash
-npm install @pioneer/vue
+npm install @opsbli/vue
 ```
 
 ```vue
 <script setup>
-import { PioneerModal } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerModal } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 </script>
 
 <template>
@@ -102,8 +102,8 @@ import '@pioneer/vue/style.css';
 
 | 包名 | 描述 | 版本 | 文档 |
 |------|------|------|------|
-| [@pioneer/react](https://www.npmjs.com/package/@pioneer/react) | React 组件库 | [![npm](https://img.shields.io/npm/v/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react) | [README](./packages/react/README.zh-CN.md) |
-| [@pioneer/vue](https://www.npmjs.com/package/@pioneer/vue) | Vue 3 组件库 | [![npm](https://img.shields.io/npm/v/@pioneer/vue.svg)](https://www.npmjs.com/package/@pioneer/vue) | [README](./packages/vue/README.zh-CN.md) |
+| [@opsbli/react](https://www.npmjs.com/package/@opsbli/react) | React 组件库 | [![npm](https://img.shields.io/npm/v/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react) | [README](./packages/react/README.zh-CN.md) |
+| [@opsbli/vue](https://www.npmjs.com/package/@opsbli/vue) | Vue 3 组件库 | [![npm](https://img.shields.io/npm/v/@opsbli/vue.svg)](https://www.npmjs.com/package/@opsbli/vue) | [README](./packages/vue/README.zh-CN.md) |
 | core | 框架无关核心 | 内部包 | - |
 
 ---
@@ -172,8 +172,8 @@ Pioneer/
 │   ├── core/     # 框架无关核心（类型、文件检测、解析器）
 │   │   ├── cache/    # 缓存：内存 LRU + IndexedDB 持久化
 │   │   └── stream/   # 流式加载：分块拉取带进度 + Office 加载管线
-│   ├── react/    # React 绑定 → @pioneer/react
-│   ├── vue/      # Vue 绑定 → @pioneer/vue
+│   ├── react/    # React 绑定 → @opsbli/react
+│   ├── vue/      # Vue 绑定 → @opsbli/vue
 │   ├── react-example/        # React 示例应用（部署到 GitHub Pages）
 │   ├── vue-example/          # Vue 示例应用（部署到 GitHub Pages /vue）
 │   └── docs/                # VitePress 文档站
@@ -245,7 +245,7 @@ pnpm pub:vue          # 发布 Vue 包到 npm
 **React 示例：**
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
+import { PioneerModal } from '@opsbli/react';
 
 const customRenderers = [
   {
@@ -267,7 +267,7 @@ const customRenderers = [
 
 ```vue
 <script setup>
-import { PioneerModal } from '@pioneer/vue';
+import { PioneerModal } from '@opsbli/vue';
 
 const CustomRenderer = {
   props: ['url'],

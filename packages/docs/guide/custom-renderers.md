@@ -44,7 +44,7 @@ Vue 端 `render` 返回 `Component`，其余字段同构。
 ## 基本示例
 
 ```tsx
-import { PioneerModal, CustomRenderer, PreviewFile } from '@pioneer/react'
+import { PioneerModal, CustomRenderer, PreviewFile } from '@opsbli/react'
 
 const customRenderers: CustomRenderer[] = [
   {
@@ -258,11 +258,11 @@ function BinaryViewer({ url }: { url: string }) {
 ### React 示例
 
 ```tsx
-import { PioneerModal } from '@pioneer/react'
+import { PioneerModal } from '@opsbli/react'
 import type {
   CustomRenderer,
   CustomRendererEventPayload,
-} from '@pioneer/react'
+} from '@opsbli/react'
 import { Sparkles } from 'lucide-react'
 
 const demoRenderers: CustomRenderer[] = [
@@ -316,7 +316,7 @@ import {
   type CustomRenderer,
   type CustomRendererContext,
   type CustomRendererEventPayload,
-} from '@pioneer/vue'
+} from '@opsbli/vue'
 import { Sparkles } from 'lucide-vue-next'
 
 const DemoRenderer = defineComponent({
@@ -396,8 +396,8 @@ function onCustomEvent(e: CustomRendererEventPayload) {
 
 ```tsx
 import { forwardRef, useImperativeHandle, useState, useEffect, useMemo, useCallback } from 'react';
-import { ToolbarEventEmitter } from '@pioneer/react';
-import type { RendererHandle, ToolbarGroup } from '@pioneer/react';
+import { ToolbarEventEmitter } from '@opsbli/react';
+import type { RendererHandle, ToolbarGroup } from '@opsbli/react';
 
 export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => {
   const [zoom, setZoom] = useState(1);
@@ -431,7 +431,7 @@ export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => 
 ```vue
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import type { ToolbarGroup } from '@pioneer/vue';
+import type { ToolbarGroup } from '@opsbli/vue';
 
 const zoom = ref(1);
 
@@ -498,7 +498,7 @@ export const CustomRenderer = defineAsyncComponent({
 **React：**
 
 ```tsx
-import { useTranslator } from '@pioneer/react';
+import { useTranslator } from '@opsbli/react';
 
 export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => {
   const t = useTranslator();
@@ -516,7 +516,7 @@ export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => 
 
 ```vue
 <script setup lang="ts">
-import { useTranslator } from '@pioneer/vue';
+import { useTranslator } from '@opsbli/vue';
 
 const { t } = useTranslator();
 </script>
@@ -575,7 +575,7 @@ export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => 
 **主题切换库：**
 
 ```tsx
-import { useResolvedTheme } from '@pioneer/react';
+import { useResolvedTheme } from '@opsbli/react';
 
 const resolvedTheme = useResolvedTheme();  // 'dark' | 'light'
 <SyntaxHighlighter style={resolvedTheme === 'light' ? vs : vscDarkPlus} />

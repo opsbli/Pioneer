@@ -15,7 +15,7 @@
 ::: code-group
 
 ```tsx [React]
-import { PioneerModal } from '@pioneer/react'
+import { PioneerModal } from '@opsbli/react'
 
 // 浅色主题
 <PioneerModal theme="light" files={files} ... />

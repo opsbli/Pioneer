@@ -52,8 +52,8 @@ jobs:
         if: steps.extract-version.outputs.version != ''
         run: |
           CURRENT_TAG=${{ steps.extract-version.outputs.version }}
-          NPM_REACT="https://www.npmjs.com/package/@pioneer/react"
-          NPM_VUE="https://www.npmjs.com/package/@pioneer/vue"
+          NPM_REACT="https://www.npmjs.com/package/@opsbli/react"
+          NPM_VUE="https://www.npmjs.com/package/@opsbli/vue"
           NPM_LINKS=$'npm(react):'"$NPM_REACT"$'\nnpm(vue):'"$NPM_VUE"
           # 获取最近的合法版本标签
           git fetch --tags

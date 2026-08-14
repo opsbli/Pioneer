@@ -22,27 +22,27 @@ Vue >= 3.4.0
 ::: code-group
 
 ```bash [React · pnpm]
-pnpm add @pioneer/react
+pnpm add @opsbli/react
 ```
 
 ```bash [Vue 3 · pnpm]
-pnpm add @pioneer/vue
+pnpm add @opsbli/vue
 ```
 
 ```bash [React · npm]
-npm install @pioneer/react
+npm install @opsbli/react
 ```
 
 ```bash [Vue 3 · npm]
-npm install @pioneer/vue
+npm install @opsbli/vue
 ```
 
 ```bash [React · yarn]
-yarn add @pioneer/react
+yarn add @opsbli/react
 ```
 
 ```bash [Vue 3 · yarn]
-yarn add @pioneer/vue
+yarn add @opsbli/vue
 ```
 
 :::
@@ -54,11 +54,11 @@ yarn add @pioneer/vue
 ::: code-group
 
 ```tsx [React]
-import '@pioneer/react/style.css'
+import '@opsbli/react/style.css'
 ```
 
 ```ts [Vue 3]
-import '@pioneer/vue/style.css'
+import '@opsbli/vue/style.css'
 ```
 
 :::
@@ -82,7 +82,7 @@ Worker 文件会自动从 CDN 加载，确保：
 ::: code-group
 
 ```tsx [React]
-import { configurePdfjs } from '@pioneer/react'
+import { configurePdfjs } from '@opsbli/react'
 
 configurePdfjs({
   workerSrc: '/pdfjs/pdf.worker.min.mjs',
@@ -92,7 +92,7 @@ configurePdfjs({
 ```
 
 ```ts [Vue 3]
-import { configurePdfWorker } from '@pioneer/vue'
+import { configurePdfWorker } from '@opsbli/vue'
 import * as pdfjsLib from 'pdfjs-dist/build/pdf.mjs'
 
 configurePdfWorker(pdfjsLib, {
@@ -110,8 +110,8 @@ configurePdfWorker(pdfjsLib, {
 
 ```tsx [React]
 import { useState } from 'react'
-import { PioneerModal } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerModal } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -137,8 +137,8 @@ export default App
 ```vue [Vue 3]
 <script setup>
 import { ref } from 'vue'
-import { PioneerModal } from '@pioneer/vue'
-import '@pioneer/vue/style.css'
+import { PioneerModal } from '@opsbli/vue'
+import '@opsbli/vue/style.css'
 
 const isOpen = ref(false)
 </script>

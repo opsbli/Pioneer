@@ -1,4 +1,4 @@
-# React Pioneer [![npm version](https://img.shields.io/npm/v/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react)[![license](https://img.shields.io/npm/l/@pioneer/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react)
+# React Pioneer [![npm version](https://img.shields.io/npm/v/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react)[![license](https://img.shields.io/npm/l/@opsbli/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react)
 
 [English](./README.md) | 简体中文
 
@@ -24,19 +24,19 @@
 
 ```bash
 # 使用 npm
-npm install @pioneer/react
+npm install @opsbli/react
 
 # 使用 yarn
-yarn add @pioneer/react
+yarn add @opsbli/react
 
 # 使用 pnpm
-pnpm add @pioneer/react
+pnpm add @opsbli/react
 ```
 
 **重要提示：** 你还需要导入 CSS 文件：
 
 ```tsx
-import '@pioneer/react/style.css';
+import '@opsbli/react/style.css';
 ```
 
 > **说明：** PDF 预览所需的 `pdfjs-dist` 依赖会自动安装，无需额外操作。
@@ -62,7 +62,7 @@ cp -r node_modules/pdfjs-dist/cmaps public/pdfjs/
 2. 在应用入口配置 PDF.js：
 
 ```tsx
-import { configurePdfjs } from '@pioneer/react';
+import { configurePdfjs } from '@opsbli/react';
 
 // 配置使用本地静态文件
 configurePdfjs({
@@ -101,7 +101,7 @@ export default defineConfig({
 然后在应用入口配置：
 
 ```tsx
-import { configurePdfjs } from '@pioneer/react';
+import { configurePdfjs } from '@opsbli/react';
 
 configurePdfjs({
   workerSrc: '/pdfjs/pdf.worker.min.mjs',
@@ -184,8 +184,8 @@ function App() {
 组件支持三种类型的文件输入：
 
 ```tsx
-import { PioneerModal, PreviewFileInput } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerModal, PreviewFileInput } from '@opsbli/react';
+import '@opsbli/react/style.css';
 
 function App() {
   // 假设 file1 来自 File API：<input type="file">、拖拽、
@@ -227,8 +227,8 @@ function App() {
 除了全屏弹窗,组件库还提供了**嵌入式**变体,可以将预览内联渲染到任意 div 容器中,适合详情面板、左右分栏布局、仪表盘等场景。
 
 ```tsx
-import { PioneerEmbed } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerEmbed } from '@opsbli/react';
+import '@opsbli/react/style.css';
 import { useState } from 'react';
 
 function InlinePreview() {
@@ -269,7 +269,7 @@ function InlinePreview() {
 ### 预览 PowerPoint 文件
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
+import { PioneerModal } from '@opsbli/react';
 import { useState } from 'react';
 
 function PptPreview() {
@@ -536,7 +536,7 @@ const files = [
 `PioneerModal` 和 `PioneerEmbed` 都是基于底层 `PioneerContent` 组件的薄包装。当你需要构建完全自定义的容器时,可以直接使用它:
 
 ```tsx
-import { PioneerContent } from '@pioneer/react';
+import { PioneerContent } from '@opsbli/react';
 
 <PioneerContent
   mode="embed"       // 或 "modal"
@@ -689,8 +689,8 @@ const files = [
 
 ```tsx
 import { forwardRef, useImperativeHandle, useState, useEffect, useMemo, useCallback } from 'react';
-import { ToolbarEventEmitter } from '@pioneer/react';
-import type { RendererHandle, ToolbarGroup } from '@pioneer/react';
+import { ToolbarEventEmitter } from '@opsbli/react';
+import type { RendererHandle, ToolbarGroup } from '@opsbli/react';
 
 interface CustomRendererProps {
   url: string;
@@ -836,7 +836,7 @@ const MyCustomRenderer = lazy(() => import('./MyCustomRenderer'));
 **在自定义渲染器中使用：**
 
 ```tsx
-import { useTranslator } from '@pioneer/react';
+import { useTranslator } from '@opsbli/react';
 
 export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => {
   const t = useTranslator();
@@ -982,7 +982,7 @@ export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => 
 对于具有 theme prop 的库（如 `react-syntax-highlighter`），使用 `useResolvedTheme()`：
 
 ```tsx
-import { useResolvedTheme } from '@pioneer/react';
+import { useResolvedTheme } from '@opsbli/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -1044,7 +1044,7 @@ export const CodeRenderer = forwardRef<RendererHandle, Props>((props, ref) => {
 
 ## <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f916.svg" width="20" height="20" alt="🤖" /> Context7 支持
 
-本项目支持 [Context7](https://context7.com) MCP Server。如果你正在使用 AI 编程助手（如 Claude Code、Cursor 等），可以配置 Context7 MCP Server 来获取 `@pioneer/react` 的最新文档和代码示例，从而获得更好的 AI 辅助开发体验。
+本项目支持 [Context7](https://context7.com) MCP Server。如果你正在使用 AI 编程助手（如 Claude Code、Cursor 等），可以配置 Context7 MCP Server 来获取 `@opsbli/react` 的最新文档和代码示例，从而获得更好的 AI 辅助开发体验。
 
 ### 如何使用
 

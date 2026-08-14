@@ -11,8 +11,8 @@ const __dirname = dirname(__filename);
 const repoRoot = join(__dirname, '..');
 
 const packages = [
-  { name: '@pioneer/react', dir: 'packages/react/lib' },
-  { name: '@pioneer/vue', dir: 'packages/vue/lib' },
+  { name: '@opsbli/react', dir: 'packages/react/lib' },
+  { name: '@opsbli/vue', dir: 'packages/vue/lib' },
 ];
 
 const TARGET_EXTS = ['.mjs', '.cjs', '.css'];

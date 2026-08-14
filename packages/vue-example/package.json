@@ -1,5 +1,5 @@
 {
-  "name": "@pioneer/vue-example",
+  "name": "@opsbli/vue-example",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pioneer/vue": "workspace:*",
+    "@opsbli/vue": "workspace:*",
     "lucide-vue-next": "^0.460.0",
     "pdfjs-dist": "6.1.200",
     "vue": "^3.5.13"

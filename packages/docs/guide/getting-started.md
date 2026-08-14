@@ -16,18 +16,18 @@ Pioneer 是一个现代化的文件预览组件，提供功能完全对等的 **
 ::: code-group
 
 ```bash [React]
-pnpm add @pioneer/react
+pnpm add @opsbli/react
 ```
 
 ```bash [Vue 3]
-pnpm add @pioneer/vue
+pnpm add @opsbli/vue
 ```
 
 :::
 
 ::: tip 哪个版本适合我？
-- 你的项目是 **React 18+** → 选 `@pioneer/react`
-- 你的项目是 **Vue 3.4+** → 选 `@pioneer/vue`
+- 你的项目是 **React 18+** → 选 `@opsbli/react`
+- 你的项目是 **Vue 3.4+** → 选 `@opsbli/vue`
 - 两个版本提供等价能力；事件和组件属性命名遵循各自框架惯例
 :::
 

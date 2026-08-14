@@ -31,8 +31,8 @@ export default defineConfig({
   resolve: {
     alias: {
       // 指向库构建产物，配合 vite build --watch 实现热更新
-      '@pioneer/react/style.css': resolve(__dirname, '../react/lib/index.css'),
-      '@pioneer/react': resolve(__dirname, '../react/lib/index.mjs'),
+      '@opsbli/react/style.css': resolve(__dirname, '../react/lib/index.css'),
+      '@opsbli/react': resolve(__dirname, '../react/lib/index.mjs'),
     },
   },
   optimizeDeps: {

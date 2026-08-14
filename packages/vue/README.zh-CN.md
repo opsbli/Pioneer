@@ -1,4 +1,4 @@
-# Vue Pioneer [![npm version](https://img.shields.io/npm/v/@pioneer/vue.svg)](https://www.npmjs.com/package/@pioneer/vue)[![license](https://img.shields.io/npm/l/@pioneer/vue.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@pioneer/vue.svg)](https://www.npmjs.com/package/@pioneer/vue)
+# Vue Pioneer [![npm version](https://img.shields.io/npm/v/@opsbli/vue.svg)](https://www.npmjs.com/package/@opsbli/vue)[![license](https://img.shields.io/npm/l/@opsbli/vue.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@opsbli/vue.svg)](https://www.npmjs.com/package/@opsbli/vue)
 
 [English](./README.md) | 简体中文
 
@@ -23,19 +23,19 @@
 
 ```bash
 # 使用 npm
-npm install @pioneer/vue
+npm install @opsbli/vue
 
 # 使用 yarn
-yarn add @pioneer/vue
+yarn add @opsbli/vue
 
 # 使用 pnpm
-pnpm add @pioneer/vue
+pnpm add @opsbli/vue
 ```
 
 **重要提示：** 你还需要导入 CSS 文件：
 
 ```ts
-import '@pioneer/vue/style.css';
+import '@opsbli/vue/style.css';
 ```
 
 > **说明：** PDF 预览所需的 `pdfjs-dist` 依赖会自动安装，无需额外操作。
@@ -61,7 +61,7 @@ cp -r node_modules/pdfjs-dist/cmaps public/pdfjs/
 
 ```ts
 import * as pdfjsLib from 'pdfjs-dist/build/pdf.mjs';
-import { configurePdfWorker } from '@pioneer/vue';
+import { configurePdfWorker } from '@opsbli/vue';
 
 configurePdfWorker(pdfjsLib, {
   workerSrc: '/pdfjs/pdf.worker.min.mjs',
@@ -130,8 +130,8 @@ export default defineConfig({
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PioneerModal } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerModal } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 
 const files = ref<File[]>([]);
 const currentIndex = ref(0);
@@ -167,8 +167,8 @@ const handleFileSelect = (e: Event) => {
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PioneerModal, type PreviewFileInput } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerModal, type PreviewFileInput } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 
 // 假设 file1 来自 File API：<input type="file">、拖拽、
 // 剪贴板粘贴,或 fetch().then(r => r.blob())
@@ -213,8 +213,8 @@ const isOpen = ref(true);
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PioneerEmbed } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerEmbed } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 
 const index = ref(0);
 
@@ -539,7 +539,7 @@ const url: string = 'https://example.com/file.pdf';
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
-import type { ToolbarGroup } from '@pioneer/vue';
+import type { ToolbarGroup } from '@opsbli/vue';
 
 interface Props {
   url: string;
@@ -710,7 +710,7 @@ const files = [...];
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useTranslator } from '@pioneer/vue';
+import { useTranslator } from '@opsbli/vue';
 
 interface Props {
   url: string;
@@ -884,7 +884,7 @@ const getToolbarGroups = (): ToolbarGroup[] => [
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { codeToHtml } from 'shiki';
-import { useResolvedTheme } from '@pioneer/vue';
+import { useResolvedTheme } from '@opsbli/vue';
 
 const props = defineProps<{ code: string; lang: string }>();
 const resolvedTheme = useResolvedTheme();  // Ref<'dark' | 'light'>

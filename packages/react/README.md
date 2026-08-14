@@ -1,4 +1,4 @@
-# React Pioneer [![npm version](https://img.shields.io/npm/v/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react)[![license](https://img.shields.io/npm/l/@pioneer/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react)
+# React Pioneer [![npm version](https://img.shields.io/npm/v/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react)[![license](https://img.shields.io/npm/l/@opsbli/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react)
 
 English | [简体中文](./README.zh-CN.md)
 
@@ -26,19 +26,19 @@ A modern, feature-rich file preview component for React with support for images,
 
 ```bash
 # Using npm
-npm install @pioneer/react
+npm install @opsbli/react
 
 # Using yarn
-yarn add @pioneer/react
+yarn add @opsbli/react
 
 # Using pnpm
-pnpm add @pioneer/react
+pnpm add @opsbli/react
 ```
 
 **Important:** You also need to import the CSS file:
 
 ```tsx
-import '@pioneer/react/style.css';
+import '@opsbli/react/style.css';
 ```
 
 > **Note:** The `pdfjs-dist` dependency will be automatically installed for PDF preview support. No additional installation is required.
@@ -64,7 +64,7 @@ cp -r node_modules/pdfjs-dist/cmaps public/pdfjs/
 2. Configure PDF.js in your app entry:
 
 ```tsx
-import { configurePdfjs } from '@pioneer/react';
+import { configurePdfjs } from '@opsbli/react';
 
 // Configure to use local static files
 configurePdfjs({
@@ -103,7 +103,7 @@ export default defineConfig({
 Then configure in your app entry:
 
 ```tsx
-import { configurePdfjs } from '@pioneer/react';
+import { configurePdfjs } from '@opsbli/react';
 
 configurePdfjs({
   workerSrc: '/pdfjs/pdf.worker.min.mjs',
@@ -146,8 +146,8 @@ export default defineConfig({
 ### Basic Usage
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerModal } from '@opsbli/react';
+import '@opsbli/react/style.css';
 import { useState } from 'react';
 
 function App() {
@@ -186,8 +186,8 @@ function App() {
 The component supports three types of file inputs:
 
 ```tsx
-import { PioneerModal, PreviewFileInput } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerModal, PreviewFileInput } from '@opsbli/react';
+import '@opsbli/react/style.css';
 
 function App() {
   // Assume `file1` comes from a File API source: <input type="file">,
@@ -229,8 +229,8 @@ function App() {
 Besides the full-screen modal, the library also ships an **embedded** variant that renders the preview inline inside any container. Useful for detail panels, side-by-side layouts, dashboards, etc.
 
 ```tsx
-import { PioneerEmbed } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerEmbed } from '@opsbli/react';
+import '@opsbli/react/style.css';
 import { useState } from 'react';
 
 function InlinePreview() {
@@ -271,7 +271,7 @@ Differences from `PioneerModal`:
 ### Preview PowerPoint Files
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
+import { PioneerModal } from '@opsbli/react';
 import { useState } from 'react';
 
 function PptPreview() {
@@ -508,7 +508,7 @@ Overlay a watermark on the preview content via the `watermark` prop (`pointer-ev
 Both `PioneerModal` and `PioneerEmbed` are thin wrappers around the exported lower-level `PioneerContent` component. Use it directly when building a fully custom wrapper:
 
 ```tsx
-import { PioneerContent } from '@pioneer/react';
+import { PioneerContent } from '@opsbli/react';
 
 <PioneerContent
   mode="embed"       // or "modal"
@@ -661,8 +661,8 @@ Custom renderers can implement real-time toolbar updates using the event-driven 
 
 ```tsx
 import { forwardRef, useImperativeHandle, useState, useEffect, useMemo, useCallback } from 'react';
-import { ToolbarEventEmitter } from '@pioneer/react';
-import type { RendererHandle, ToolbarGroup } from '@pioneer/react';
+import { ToolbarEventEmitter } from '@opsbli/react';
+import type { RendererHandle, ToolbarGroup } from '@opsbli/react';
 
 interface CustomRendererProps {
   url: string;
@@ -808,7 +808,7 @@ Custom renderers can access the library's i18n system via the `useTranslator()` 
 **Usage in Custom Renderers:**
 
 ```tsx
-import { useTranslator } from '@pioneer/react';
+import { useTranslator } from '@opsbli/react';
 
 export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => {
   const t = useTranslator();
@@ -954,7 +954,7 @@ export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => 
 For libraries with theme props (e.g., `react-syntax-highlighter`), use `useResolvedTheme()`:
 
 ```tsx
-import { useResolvedTheme } from '@pioneer/react';
+import { useResolvedTheme } from '@opsbli/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -1016,7 +1016,7 @@ The component is built with Tailwind CSS. You can customize styles by overriding
 
 ## <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f916.svg" width="20" height="20" alt="🤖" /> Context7 Support
 
-This project supports [Context7](https://context7.com) MCP Server. If you are using AI coding assistants (such as Claude Code, Cursor, etc.), you can configure the Context7 MCP Server to get the latest documentation and code examples for `@pioneer/react`, enabling a better AI-assisted development experience.
+This project supports [Context7](https://context7.com) MCP Server. If you are using AI coding assistants (such as Claude Code, Cursor, etc.), you can configure the Context7 MCP Server to get the latest documentation and code examples for `@opsbli/react`, enabling a better AI-assisted development experience.
 
 ### How to Use
 

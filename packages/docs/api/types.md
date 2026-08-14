@@ -207,7 +207,7 @@ interface CustomRendererEventPayload<T = unknown> {
 import type {
   CustomRenderer,
   CustomRendererEventPayload,
-} from '@pioneer/react'
+} from '@opsbli/react'
 import { Sparkles } from 'lucide-react'
 
 const demoRenderer: CustomRenderer = {
@@ -321,7 +321,7 @@ interface PdfConfigOptions {
 ### 示例
 
 ```typescript
-import { configurePdfjs } from '@pioneer/react'
+import { configurePdfjs } from '@opsbli/react'
 
 // 使用本地 worker
 configurePdfjs({
@@ -332,7 +332,7 @@ configurePdfjs({
 ## 完整类型定义示例
 
 ```typescript
-import { PioneerModal } from '@pioneer/react'
+import { PioneerModal } from '@opsbli/react'
 import type {
   PreviewFileInput,
   PreviewFileLink,
@@ -345,7 +345,7 @@ import type {
   RequestInitFactory,
   RequestHandler,
   ShouldFetchAsBlob,
-} from '@pioneer/react'
+} from '@opsbli/react'
 
 // 使用示例
 const files: PreviewFileInput[] = [
@@ -385,7 +385,7 @@ interface RendererHandle {
 
 ```tsx
 import { forwardRef, useImperativeHandle } from 'react';
-import type { RendererHandle } from '@pioneer/react';
+import type { RendererHandle } from '@opsbli/react';
 
 export const CustomRenderer = forwardRef<RendererHandle, Props>((props, ref) => {
   useImperativeHandle(ref, () => ({
@@ -427,7 +427,7 @@ class ToolbarEventEmitter {
 
 ```tsx
 import { useMemo, useEffect } from 'react';
-import { ToolbarEventEmitter } from '@pioneer/react';
+import { ToolbarEventEmitter } from '@opsbli/react';
 
 const emitter = useMemo(() => new ToolbarEventEmitter(), []);
 

@@ -12,8 +12,8 @@ import {
   type CustomRenderer,
   type CustomRendererContext,
   type CustomRendererEventPayload,
-} from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+} from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 import {
   FileText,
   Image as ImageIcon,
@@ -370,7 +370,7 @@ onUnmounted(() => {
             <div class="flex flex-col items-start min-w-0 overflow-hidden">
               <h1 class="text-base sm:text-xl font-bold text-white truncate w-full text-left">Vue File Preview</h1>
               <p class="text-[10px] sm:text-xs text-gray-400 truncate w-full text-left">
-                @pioneer/vue@{{ VERSION }}
+                @opsbli/vue@{{ VERSION }}
               </p>
             </div>
           </div>
@@ -402,7 +402,7 @@ onUnmounted(() => {
               <span class="hidden sm:inline">GitHub</span>
             </a>
             <a
-              href="https://www.npmjs.com/package/@pioneer/vue"
+              href="https://www.npmjs.com/package/@opsbli/vue"
               target="_blank"
               rel="noopener noreferrer"
               class="hidden sm:flex items-center gap-2 px-2.5 py-2 sm:px-4 sm:py-2 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 text-white transition-all hover:scale-105"
@@ -663,7 +663,7 @@ onUnmounted(() => {
           </a>
           <span> </span>
           <a
-            href="https://www.npmjs.com/package/@pioneer/vue"
+            href="https://www.npmjs.com/package/@opsbli/vue"
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-500 hover:text-gray-400 transition-colors"

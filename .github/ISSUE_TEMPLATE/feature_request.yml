@@ -17,8 +17,8 @@ body:
       description: 此功能应适用于哪些包？
       multiple: true
       options:
-        - "@pioneer/react"
-        - "@pioneer/vue"
+        - "@opsbli/react"
+        - "@opsbli/vue"
         - "@pioneer/core"
         - 文档 / 示例
     validations:

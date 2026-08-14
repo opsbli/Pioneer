@@ -38,8 +38,8 @@ Closes #
 ## 影响范围 / Affected Packages
 
 - [ ] `@pioneer/core`
-- [ ] `@pioneer/react`
-- [ ] `@pioneer/vue`
+- [ ] `@opsbli/react`
+- [ ] `@opsbli/vue`
 - [ ] 文档 / Docs
 - [ ] 示例 / Examples
 

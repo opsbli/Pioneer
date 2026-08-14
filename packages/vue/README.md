@@ -1,4 +1,4 @@
-# Vue Pioneer [![npm version](https://img.shields.io/npm/v/@pioneer/vue.svg)](https://www.npmjs.com/package/@pioneer/vue)[![license](https://img.shields.io/npm/l/@pioneer/vue.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@pioneer/vue.svg)](https://www.npmjs.com/package/@pioneer/vue)
+# Vue Pioneer [![npm version](https://img.shields.io/npm/v/@opsbli/vue.svg)](https://www.npmjs.com/package/@opsbli/vue)[![license](https://img.shields.io/npm/l/@opsbli/vue.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)[![downloads](https://img.shields.io/npm/dm/@opsbli/vue.svg)](https://www.npmjs.com/package/@opsbli/vue)
 
 English | [简体中文](./README.zh-CN.md)
 
@@ -23,19 +23,19 @@ A modern, feature-rich file preview component for Vue 3 with support for images,
 
 ```bash
 # Using npm
-npm install @pioneer/vue
+npm install @opsbli/vue
 
 # Using yarn
-yarn add @pioneer/vue
+yarn add @opsbli/vue
 
 # Using pnpm
-pnpm add @pioneer/vue
+pnpm add @opsbli/vue
 ```
 
 **Important:** You also need to import the CSS file:
 
 ```ts
-import '@pioneer/vue/style.css';
+import '@opsbli/vue/style.css';
 ```
 
 > **Note:** The `pdfjs-dist` dependency will be automatically installed for PDF preview support. No additional installation is required.
@@ -61,7 +61,7 @@ cp -r node_modules/pdfjs-dist/cmaps public/pdfjs/
 
 ```ts
 import * as pdfjsLib from 'pdfjs-dist/build/pdf.mjs';
-import { configurePdfWorker } from '@pioneer/vue';
+import { configurePdfWorker } from '@opsbli/vue';
 
 configurePdfWorker(pdfjsLib, {
   workerSrc: '/pdfjs/pdf.worker.min.mjs',
@@ -130,8 +130,8 @@ export default defineConfig({
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PioneerModal } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerModal } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 
 const files = ref<File[]>([]);
 const currentIndex = ref(0);
@@ -167,8 +167,8 @@ The component supports three types of file inputs:
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PioneerModal, type PreviewFileInput } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerModal, type PreviewFileInput } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 
 // Assume file1 comes from a File API source: <input type="file">,
 // drag & drop, clipboard paste, or fetch().then(r => r.blob())
@@ -213,8 +213,8 @@ Besides the full-screen modal, the library also ships an **embedded** variant th
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PioneerEmbed } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerEmbed } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 
 const index = ref(0);
 
@@ -506,7 +506,7 @@ Custom renderers can implement real-time toolbar updates using Vue 3's reactivit
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
-import type { ToolbarGroup } from '@pioneer/vue';
+import type { ToolbarGroup } from '@opsbli/vue';
 
 interface Props {
   url: string;
@@ -677,7 +677,7 @@ Custom renderers can access the library's i18n system via the `useTranslator()` 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useTranslator } from '@pioneer/vue';
+import { useTranslator } from '@opsbli/vue';
 
 interface Props {
   url: string;
@@ -851,7 +851,7 @@ For libraries with theme props (e.g., `shiki`), use `useResolvedTheme()`:
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { codeToHtml } from 'shiki';
-import { useResolvedTheme } from '@pioneer/vue';
+import { useResolvedTheme } from '@opsbli/vue';
 
 const props = defineProps<{ code: string; lang: string }>();
 const resolvedTheme = useResolvedTheme();  // Ref<'dark' | 'light'>

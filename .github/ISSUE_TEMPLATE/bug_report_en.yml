@@ -16,8 +16,8 @@ body:
       label: Affected Package
       description: Which package are you using?
       options:
-        - "@pioneer/react"
-        - "@pioneer/vue"
+        - "@opsbli/react"
+        - "@opsbli/vue"
         - "@pioneer/core"
         - Multiple packages / Not sure
     validations:

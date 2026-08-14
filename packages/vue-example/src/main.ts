@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
-import { configurePdfWorker } from '@pioneer/vue';
+import { configurePdfWorker } from '@opsbli/vue';
 // @ts-ignore
 import * as pdfjsLib from 'pdfjs-dist/build/pdf.mjs';
 

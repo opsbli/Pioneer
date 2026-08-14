@@ -15,8 +15,8 @@ body:
     attributes:
       label: Related Package
       options:
-        - "@pioneer/react"
-        - "@pioneer/vue"
+        - "@opsbli/react"
+        - "@opsbli/vue"
         - "@pioneer/core"
         - Not sure / Other
     validations:

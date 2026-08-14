@@ -16,8 +16,8 @@ body:
       label: 受影响的包
       description: 选择遇到问题的包
       options:
-        - "@pioneer/react"
-        - "@pioneer/vue"
+        - "@opsbli/react"
+        - "@opsbli/vue"
         - "@pioneer/core"
         - 多个包 / 不确定
     validations:

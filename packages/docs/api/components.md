@@ -112,7 +112,7 @@ const files4 = [
 自定义渲染器会优先于内置渲染器执行。如果多个自定义渲染器匹配同一文件，将使用第一个匹配的渲染器。
 
 ```tsx
-import type { CustomRenderer } from '@pioneer/react'
+import type { CustomRenderer } from '@opsbli/react'
 import { Sparkles } from 'lucide-react'
 
 const customRenderers: CustomRenderer[] = [
@@ -422,9 +422,9 @@ const customRenderers: CustomRenderer[] = [
 
 ```tsx
 import { useState } from 'react'
-import { PioneerModal } from '@pioneer/react'
-import type { PreviewFileInput } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerModal } from '@opsbli/react'
+import type { PreviewFileInput } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -471,8 +471,8 @@ function App() {
 ### 基础用法
 
 ```tsx
-import { PioneerEmbed } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerEmbed } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function Panel() {
   const files = [
@@ -540,9 +540,9 @@ function Panel() {
 
 ```tsx
 import { useState } from 'react'
-import { PioneerEmbed } from '@pioneer/react'
-import type { PreviewFileInput } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerEmbed } from '@opsbli/react'
+import type { PreviewFileInput } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function DetailPanel() {
   const [index, setIndex] = useState(0)
@@ -611,7 +611,7 @@ function DetailPanel() {
 ### 使用示例
 
 ```tsx
-import { PioneerContent } from '@pioneer/react'
+import { PioneerContent } from '@opsbli/react'
 
 function CustomDrawer({ files, currentIndex, onNavigate, onClose }) {
   return (

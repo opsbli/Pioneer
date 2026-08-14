@@ -5,7 +5,7 @@
 当前包的版本号常量。
 
 ```typescript
-import { VERSION } from '@pioneer/react'
+import { VERSION } from '@opsbli/react'
 
 console.log(VERSION) // e.g. "1.0.5"
 ```
@@ -43,7 +43,7 @@ function normalizeFile(
 ### 示例
 
 ```typescript
-import { normalizeFile } from '@pioneer/react'
+import { normalizeFile } from '@opsbli/react'
 
 // 1. 标准化 URL 字符串
 const file1 = normalizeFile('https://example.com/image.jpg', 0)
@@ -102,7 +102,7 @@ function normalizeFiles(inputs: PreviewFileInput[]): PreviewFile[]
 ### 示例
 
 ```typescript
-import { normalizeFiles } from '@pioneer/react'
+import { normalizeFiles } from '@opsbli/react'
 
 const inputs = [
   'https://example.com/image.jpg',
@@ -192,7 +192,7 @@ const normalized = normalizeFiles(inputs)
 ### 场景 1: 处理用户上传的文件
 
 ```typescript
-import { normalizeFiles } from '@pioneer/react'
+import { normalizeFiles } from '@opsbli/react'
 
 function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
   const fileList = event.target.files
@@ -209,7 +209,7 @@ function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
 ### 场景 2: 处理混合来源的文件
 
 ```typescript
-import { normalizeFiles } from '@pioneer/react'
+import { normalizeFiles } from '@opsbli/react'
 
 // 混合使用 URL、文件对象和 File 对象
 const mixedFiles = [
@@ -234,7 +234,7 @@ const normalized = normalizeFiles(mixedFiles)
 ### 场景 3: 自定义文件处理
 
 ```typescript
-import { normalizeFile } from '@pioneer/react'
+import { normalizeFile } from '@opsbli/react'
 
 function processFile(input: PreviewFileInput, index: number) {
   const normalized = normalizeFile(input, index)
@@ -270,7 +270,7 @@ function configurePdfjs(options?: PdfConfigOptions): void
 ### 示例
 
 ```typescript
-import { configurePdfjs } from '@pioneer/react'
+import { configurePdfjs } from '@opsbli/react'
 
 // 使用本地 Worker 文件
 configurePdfjs({
@@ -293,7 +293,7 @@ configurePdfjs({
 PDF.js 库的重新导出，可用于高级配置场景。
 
 ```typescript
-import { pdfjs } from '@pioneer/react'
+import { pdfjs } from '@opsbli/react'
 
 // 访问 PDF.js 版本
 console.log(pdfjs.version)
@@ -327,7 +327,7 @@ interface RequestOptions {
 在自定义 renderer 中复用顶层鉴权配置（React）：
 
 ```tsx
-import { useFetcher } from '@pioneer/react' // 注：当前仅内部使用，未来视需要导出
+import { useFetcher } from '@opsbli/react' // 注：当前仅内部使用，未来视需要导出
 
 // 一般情况下用 createFetcher 自行组合：
 import { createFetcher } from '@pioneer/core'

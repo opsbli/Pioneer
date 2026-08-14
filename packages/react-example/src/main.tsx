@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { configurePdfjs } from '@pioneer/react'
+import { configurePdfjs } from '@opsbli/react'
 
 // 必须在导入 App 之前配置 PDF.js
 if (import.meta.env.PROD) {

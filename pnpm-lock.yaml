@@ -232,7 +232,7 @@ importers:
 
   packages/react-example:
     dependencies:
-      '@pioneer/react':
+      '@opsbli/react':
         specifier: workspace:*
         version: link:../react
       lucide-react:
@@ -408,7 +408,7 @@ importers:
 
   packages/vue-example:
     dependencies:
-      '@pioneer/vue':
+      '@opsbli/vue':
         specifier: workspace:*
         version: link:../vue
       lucide-vue-next:

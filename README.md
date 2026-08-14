@@ -1,9 +1,9 @@
 # Pioneer
 
-[![npm version](https://img.shields.io/npm/v/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react)
-[![license](https://img.shields.io/npm/l/@pioneer/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)
-[![react downloads](https://img.shields.io/npm/dm/@pioneer/react.svg?label=@pioneer/react)](https://www.npmjs.com/package/@pioneer/react)
-[![vue downloads](https://img.shields.io/npm/dm/@pioneer/vue.svg?label=@pioneer/vue)](https://www.npmjs.com/package/@pioneer/vue)
+[![npm version](https://img.shields.io/npm/v/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react)
+[![license](https://img.shields.io/npm/l/@opsbli/react.svg)](https://github.com/opsbli/Pioneer/blob/master/LICENSE)
+[![react downloads](https://img.shields.io/npm/dm/@opsbli/react.svg?label=@opsbli/react)](https://www.npmjs.com/package/@opsbli/react)
+[![vue downloads](https://img.shields.io/npm/dm/@opsbli/vue.svg?label=@opsbli/vue)](https://www.npmjs.com/package/@opsbli/vue)
 
 English | [简体中文](./README.zh-CN.md)
 
@@ -36,8 +36,8 @@ A modern, feature-rich file preview component library with **first-class support
     &bull; <a href="https://opsbli.github.io/Pioneer/vue/">Vue Demo</a>
   </td>
   <td>
-    &bull; <a href="https://www.npmjs.com/package/@pioneer/react">React Package</a><br>
-    &bull; <a href="https://www.npmjs.com/package/@pioneer/vue">Vue Package</a><br>
+    &bull; <a href="https://www.npmjs.com/package/@opsbli/react">React Package</a><br>
+    &bull; <a href="https://www.npmjs.com/package/@opsbli/vue">Vue Package</a><br>
     &bull; <a href="https://github.com/opsbli/Pioneer/issues">Issue Tracker</a>
   </td>
   <td>
@@ -55,12 +55,12 @@ A modern, feature-rich file preview component library with **first-class support
 ### React
 
 ```bash
-npm install @pioneer/react
+npm install @opsbli/react
 ```
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerModal } from '@opsbli/react';
+import '@opsbli/react/style.css';
 
 <PioneerModal
   files={[file]}
@@ -75,13 +75,13 @@ import '@pioneer/react/style.css';
 ### Vue
 
 ```bash
-npm install @pioneer/vue
+npm install @opsbli/vue
 ```
 
 ```vue
 <script setup>
-import { PioneerModal } from '@pioneer/vue';
-import '@pioneer/vue/style.css';
+import { PioneerModal } from '@opsbli/vue';
+import '@opsbli/vue/style.css';
 </script>
 
 <template>
@@ -102,8 +102,8 @@ import '@pioneer/vue/style.css';
 
 | Package | Description | Version | Documentation |
 |---------|-------------|---------|---------------|
-| [@pioneer/react](https://www.npmjs.com/package/@pioneer/react) | React component library | [![npm](https://img.shields.io/npm/v/@pioneer/react.svg)](https://www.npmjs.com/package/@pioneer/react) | [README](./packages/react/README.md) |
-| [@pioneer/vue](https://www.npmjs.com/package/@pioneer/vue) | Vue 3 component library | [![npm](https://img.shields.io/npm/v/@pioneer/vue.svg)](https://www.npmjs.com/package/@pioneer/vue) | [README](./packages/vue/README.md) |
+| [@opsbli/react](https://www.npmjs.com/package/@opsbli/react) | React component library | [![npm](https://img.shields.io/npm/v/@opsbli/react.svg)](https://www.npmjs.com/package/@opsbli/react) | [README](./packages/react/README.md) |
+| [@opsbli/vue](https://www.npmjs.com/package/@opsbli/vue) | Vue 3 component library | [![npm](https://img.shields.io/npm/v/@opsbli/vue.svg)](https://www.npmjs.com/package/@opsbli/vue) | [README](./packages/vue/README.md) |
 | core | Framework-agnostic core | Internal | - |
 
 ---
@@ -172,8 +172,8 @@ Pioneer/
 │   ├── core/     # Framework-agnostic core (types, detection, parsers)
 │   │   ├── cache/    # Caching: in-memory LRU + IndexedDB persistence
 │   │   └── stream/   # Streaming: chunked fetch with progress + Office load pipeline
-│   ├── react/    # React bindings → @pioneer/react
-│   ├── vue/      # Vue bindings → @pioneer/vue
+│   ├── react/    # React bindings → @opsbli/react
+│   ├── vue/      # Vue bindings → @opsbli/vue
 │   ├── react-example/        # React demo app (deployed to GitHub Pages)
 │   ├── vue-example/          # Vue demo app (deployed to GitHub Pages /vue)
 │   └── docs/                # VitePress documentation site
@@ -244,7 +244,7 @@ Support custom renderers for file types not built-in.
 **React Example:**
 
 ```tsx
-import { PioneerModal } from '@pioneer/react';
+import { PioneerModal } from '@opsbli/react';
 
 const customRenderers = [
   {
@@ -266,7 +266,7 @@ const customRenderers = [
 
 ```vue
 <script setup>
-import { PioneerModal } from '@pioneer/vue';
+import { PioneerModal } from '@opsbli/vue';
 
 const CustomRenderer = {
   props: ['url'],

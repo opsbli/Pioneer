@@ -126,9 +126,9 @@ shouldFetchAsBlob={(file) =>
 
 ```tsx
 import { useState } from 'react'
-import { PioneerModal } from '@pioneer/react'
-import type { PreviewFileInput } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerModal } from '@opsbli/react'
+import type { PreviewFileInput } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function AuthedPreview({ token }: { token: string }) {
   const [open, setOpen] = useState(false)

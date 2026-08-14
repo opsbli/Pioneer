@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback } from 'react';
-import { PioneerModal, PioneerEmbed, VERSION, SUPPORTED_FILE_TYPES } from '@pioneer/react';
-import type { PreviewFile, PreviewFileInput, Theme, CustomRenderer, CustomRendererEventPayload, WatermarkConfig } from '@pioneer/react';
-import type { Locale } from '@pioneer/react';
-import '@pioneer/react/style.css';
+import { PioneerModal, PioneerEmbed, VERSION, SUPPORTED_FILE_TYPES } from '@opsbli/react';
+import type { PreviewFile, PreviewFileInput, Theme, CustomRenderer, CustomRendererEventPayload, WatermarkConfig } from '@opsbli/react';
+import type { Locale } from '@opsbli/react';
+import '@opsbli/react/style.css';
 import { FileText, Image, FileSpreadsheet, Video, Music, Upload, X, Package, BookOpen, Code, Settings, Sparkles, Link as LinkIcon } from 'lucide-react';
 import iconSvg from './assets/icon.svg';
 
@@ -358,7 +358,7 @@ function App() {
               <div className="flex flex-col items-start min-w-0 overflow-hidden">
                 <h1 className="text-base sm:text-xl font-bold text-white truncate w-full text-left">React File Preview</h1>
                 <p className="text-[10px] sm:text-xs text-gray-400 truncate w-full text-left">
-                  @pioneer/react@{VERSION}
+                  @opsbli/react@{VERSION}
                 </p>
               </div>
             </div>
@@ -388,7 +388,7 @@ function App() {
                 <span className="hidden sm:inline">GitHub</span>
               </a>
               <a
-                href="https://www.npmjs.com/package/@pioneer/react"
+                href="https://www.npmjs.com/package/@opsbli/react"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:flex items-center gap-2 px-2.5 py-2 sm:px-4 sm:py-2 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 text-white transition-all hover:scale-105"
@@ -652,7 +652,7 @@ function App() {
             </a>
             <span>{' '}</span>
             <a
-              href="https://www.npmjs.com/package/@pioneer/react"
+              href="https://www.npmjs.com/package/@opsbli/react"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-gray-400 transition-colors"

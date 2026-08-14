@@ -44,8 +44,8 @@ export default defineConfig({
       {
         text: '框架',
         items: [
-          { text: 'React (@pioneer/react)', link: 'https://www.npmjs.com/package/@pioneer/react', target: '_blank' },
-          { text: 'Vue 3 (@pioneer/vue)', link: 'https://www.npmjs.com/package/@pioneer/vue', target: '_blank' },
+          { text: 'React (@opsbli/react)', link: 'https://www.npmjs.com/package/@opsbli/react', target: '_blank' },
+          { text: 'Vue 3 (@opsbli/vue)', link: 'https://www.npmjs.com/package/@opsbli/vue', target: '_blank' },
         ],
       },
     ],

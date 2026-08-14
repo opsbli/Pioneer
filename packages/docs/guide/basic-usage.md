@@ -15,8 +15,8 @@
 
 ```tsx [React]
 import { useState } from 'react'
-import { PioneerModal } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerModal } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -45,8 +45,8 @@ function App() {
 ```vue [Vue 3]
 <script setup>
 import { ref } from 'vue'
-import { PioneerModal } from '@pioneer/vue'
-import '@pioneer/vue/style.css'
+import { PioneerModal } from '@opsbli/vue'
+import '@opsbli/vue/style.css'
 
 const isOpen = ref(false)
 const currentIndex = ref(0)
@@ -129,7 +129,7 @@ function FileUploadExample() {
 ```vue [Vue 3]
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PioneerModal, type PreviewFileInput } from '@pioneer/vue'
+import { PioneerModal, type PreviewFileInput } from '@opsbli/vue'
 
 const files = ref<PreviewFileInput[]>([])
 const isOpen = ref(false)
@@ -162,8 +162,8 @@ const handleFileChange = (e: Event) => {
 
 ```tsx [React]
 import { useState } from 'react'
-import { PioneerEmbed } from '@pioneer/react'
-import '@pioneer/react/style.css'
+import { PioneerEmbed } from '@opsbli/react'
+import '@opsbli/react/style.css'
 
 function InlinePreview() {
   const [index, setIndex] = useState(0)
@@ -189,8 +189,8 @@ function InlinePreview() {
 ```vue [Vue 3]
 <script setup>
 import { ref } from 'vue'
-import { PioneerEmbed } from '@pioneer/vue'
-import '@pioneer/vue/style.css'
+import { PioneerEmbed } from '@opsbli/vue'
+import '@opsbli/vue/style.css'
 
 const index = ref(0)
 const files = [
@@ -246,7 +246,7 @@ const files = [
 ::: code-group
 
 ```tsx [React]
-import type { CustomRenderer } from '@pioneer/react'
+import type { CustomRenderer } from '@opsbli/react'
 
 const customRenderers: CustomRenderer[] = [
   {
@@ -272,7 +272,7 @@ const customRenderers: CustomRenderer[] = [
 ```vue [Vue 3]
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
-import { PioneerModal, type CustomRenderer } from '@pioneer/vue'
+import { PioneerModal, type CustomRenderer } from '@opsbli/vue'
 
 // 自定义渲染器组件
 const CustomRendererComp = defineComponent({
